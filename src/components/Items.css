@@ -1,0 +1,38 @@
+.itens-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    width: auto;
+    margin-top: 20px;
+    height: 30px;
+  }
+  
+  .items-title {
+    font-size: 1em;
+    font-weight: bold;
+    color: black;
+  }
+  
+  .btn-container {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+  }

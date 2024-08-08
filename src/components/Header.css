@@ -1,0 +1,25 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.Logo span {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.theme-contain {
+  display: flex;
+  align-items: center;
+}
+
+.theme-contain .mode {
+  font-size: 16px;
+  cursor: pointer;
+}
+span {
+  padding: 5px; 
+}
