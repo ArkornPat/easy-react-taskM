@@ -1,19 +1,23 @@
 import Header from "./components/Header";
 import Addform from "./components/Addform";
 import Items from "./components/Items";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import "./App.css";
 
 function App() {
-  const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem("tasks"))|| []);
+  const [tasks, setTasks] = useState(() => JSON.parse(localStorage.getItem("tasks")) || []);
   const [title, setTitle] = useState("");
   const [editId, setEditId] = useState(null);
-  const [theme,setTheme] = useState("light");
+  const [theme, setTheme] = useState(() => {
+    const savedTheme = localStorage.getItem("theme");
+    return savedTheme ? savedTheme : "light";
+  });
 
-  useEffect(()=>{
-    localStorage.setItem("tasks",JSON.stringify(tasks))
-  },[tasks])
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    localStorage.setItem("theme", theme); 
+  }, [tasks, theme]);
 
   function saveTask(e) {
     e.preventDefault();
@@ -28,8 +32,8 @@ function App() {
           return item;
         })
       );
-      setEditId(null); 
-      setTitle(""); 
+      setEditId(null);
+      setTitle("");
     } else {
       const newTask = {
         id: Math.floor(Math.random() * 1000),
@@ -40,8 +44,8 @@ function App() {
     }
   }
 
-  function deleteTask(id){
-    const result = tasks.filter((item) => item.id !== id)
+  function deleteTask(id) {
+    const result = tasks.filter((item) => item.id !== id);
     setTasks(result);
   }
 
@@ -52,13 +56,13 @@ function App() {
   }
 
   return (
-    <div className={"App "+theme}>
-      <Header theme={theme} setTheme={setTheme}/>
+    <div className={"App " + theme}>
+      <Header theme={theme} setTheme={setTheme} />
       <div className="form">
-        <Addform title={title} setTitle={setTitle} saveTask={saveTask} editId={editId}/>
+        <Addform title={title} setTitle={setTitle} saveTask={saveTask} editId={editId} />
         <section>
           {tasks.map((data) => (
-            <Items key={data.id} data={data} deleteTask={deleteTask} editTask={editTask}/>
+            <Items key={data.id} data={data} deleteTask={deleteTask} editTask={editTask} />
           ))}
         </section>
       </div>
@@ -67,3 +71,4 @@ function App() {
 }
 
 export default App;
+
